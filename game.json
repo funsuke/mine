@@ -1,0 +1,326 @@
+{
+	"width": 1280,
+	"height": 720,
+	"fps": 30,
+	"maxPoints": 1,
+	"main": "./script/_bootstrap.js",
+	"assets": {
+		"main": {
+			"type": "script",
+			"path": "script/main.js",
+			"global": true
+		},
+		"tiles": {
+			"type": "image",
+			"path": "image/tiles.png",
+			"width": 1200,
+			"height": 80
+		},
+		"parameterObject": {
+			"type": "script",
+			"path": "script/parameterObject.js",
+			"global": true
+		},
+		"random": {
+			"type": "script",
+			"path": "script/random.js",
+			"global": true
+		},
+		"sceneTitle": {
+			"type": "script",
+			"path": "script/sceneTitle.js",
+			"global": true
+		},
+		"_bootstrap": {
+			"type": "script",
+			"path": "script/_bootstrap.js",
+			"global": true
+		},
+		"util": {
+			"type": "script",
+			"path": "script/util.js",
+			"global": true
+		},
+		"utilAkashic": {
+			"type": "script",
+			"path": "script/utilAkashic.js",
+			"global": true
+		},
+		"CTiles": {
+			"type": "script",
+			"path": "script/CTiles.js",
+			"global": true
+		},
+		"CFace": {
+			"type": "script",
+			"path": "script/CFace.js",
+			"global": true
+		},
+		"number": {
+			"type": "script",
+			"path": "script/number.js",
+			"global": true
+		},
+		"7seg_48x80_0": {
+			"type": "image",
+			"path": "image/7seg_48x80_0.png",
+			"width": 48,
+			"height": 80
+		},
+		"7seg_48x80_1": {
+			"type": "image",
+			"path": "image/7seg_48x80_1.png",
+			"width": 480,
+			"height": 80
+		},
+		"wait": {
+			"type": "image",
+			"path": "image/wait.png",
+			"width": 640,
+			"height": 360
+		},
+		"se2000e_nc294782_52_Shutdown2000": {
+			"type": "audio",
+			"path": "audio/se2000e_nc294782_52_Shutdown2000",
+			"systemId": "sound",
+			"duration": 3901,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se2000s_nc294782_51_Startup2000": {
+			"type": "audio",
+			"path": "audio/se2000s_nc294782_51_Startup2000",
+			"systemId": "sound",
+			"duration": 5512,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se95e_nc294782_17_TADA95": {
+			"type": "audio",
+			"path": "audio/se95e_nc294782_17_TADA95",
+			"systemId": "sound",
+			"duration": 1228,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se95s_nc294782_44_Startup95": {
+			"type": "audio",
+			"path": "audio/se95s_nc294782_44_Startup95",
+			"systemId": "sound",
+			"duration": 6123,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se98e_nc294782_50_Shutdown98": {
+			"type": "audio",
+			"path": "audio/se98e_nc294782_50_Shutdown98",
+			"systemId": "sound",
+			"duration": 3550,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se98s_nc294782_49_Startup98": {
+			"type": "audio",
+			"path": "audio/se98s_nc294782_49_Startup98",
+			"systemId": "sound",
+			"duration": 7859,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seLHe_nc294782_60_ShutdownLH": {
+			"type": "audio",
+			"path": "audio/seLHe_nc294782_60_ShutdownLH",
+			"systemId": "sound",
+			"duration": 5277,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seLHs_nc294782_59_StartupLH": {
+			"type": "audio",
+			"path": "audio/seLHs_nc294782_59_StartupLH",
+			"systemId": "sound",
+			"duration": 6434,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seNT4e_nc294782_46_ShutdownNT4": {
+			"type": "audio",
+			"path": "audio/seNT4e_nc294782_46_ShutdownNT4",
+			"systemId": "sound",
+			"duration": 9973,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seNT4s_nc294782_45_StartupNT4": {
+			"type": "audio",
+			"path": "audio/seNT4s_nc294782_45_StartupNT4",
+			"systemId": "sound",
+			"duration": 9973,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seNT5e_nc294782_48_ShutdownNT5": {
+			"type": "audio",
+			"path": "audio/seNT5e_nc294782_48_ShutdownNT5",
+			"systemId": "sound",
+			"duration": 4994,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seNT5s_nc294782_47_StartupNT5": {
+			"type": "audio",
+			"path": "audio/seNT5s_nc294782_47_StartupNT5",
+			"systemId": "sound",
+			"duration": 13302,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seVistae_nc294782_64_ShutdownVista": {
+			"type": "audio",
+			"path": "audio/seVistae_nc294782_64_ShutdownVista",
+			"systemId": "sound",
+			"duration": 1597,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seVistas_nc294782_63_StartupVista": {
+			"type": "audio",
+			"path": "audio/seVistas_nc294782_63_StartupVista",
+			"systemId": "sound",
+			"duration": 4394,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seXPe_nc294782_56_ShutdownXP": {
+			"type": "audio",
+			"path": "audio/seXPe_nc294782_56_ShutdownXP",
+			"systemId": "sound",
+			"duration": 3204,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"seXPs_nc294782_55_StartupXP": {
+			"type": "audio",
+			"path": "audio/seXPs_nc294782_55_StartupXP",
+			"systemId": "sound",
+			"duration": 4815,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se_fail_nc70053": {
+			"type": "audio",
+			"path": "audio/se_fail_nc70053",
+			"systemId": "sound",
+			"duration": 1694,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se_open_nc305386": {
+			"type": "audio",
+			"path": "audio/se_open_nc305386",
+			"systemId": "sound",
+			"duration": 1320,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			}
+		},
+		"se_pon": {
+			"type": "audio",
+			"path": "audio/se_pon",
+			"systemId": "sound",
+			"duration": 350,
+			"hint": {
+				"extensions": [
+					".aac",
+					".ogg"
+				]
+			}
+		},
+		"title": {
+			"type": "image",
+			"path": "image/title.png",
+			"width": 640,
+			"height": 360
+		}
+	},
+	"environment": {
+		"sandbox-runtime": "3",
+		"nicolive": {
+			"supportedModes": [
+				"ranking"
+			]
+		}
+	},
+	"globalScripts": []
+}
