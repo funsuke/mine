@@ -51,11 +51,6 @@
 			"path": "script/CTiles.js",
 			"global": true
 		},
-		"CFace": {
-			"type": "script",
-			"path": "script/CFace.js",
-			"global": true
-		},
 		"number": {
 			"type": "script",
 			"path": "script/number.js",
@@ -319,7 +314,10 @@
 		"nicolive": {
 			"supportedModes": [
 				"ranking"
-			]
+			],
+			"preferredSessionParameters": {
+				"totalTimeLimit": 136
+			}
 		}
 	},
 	"globalScripts": []

@@ -1,6 +1,6 @@
 import { GameMainParameterObject } from "./parameterObject";
 import { Random } from "./random";
-import { TILE_SIZE, Tiles, TileState } from "./CTiles";
+import { DST_TILE_SIZE, MINE_MAX, SRC_TILE_SIZE, Tiles, TileState } from "./CTiles";
 import { Number } from "./number";
 // import { SceneMain } from "./sceneMain";
 // import { generate2DArray, getSerialNumberArray } from "./util";
@@ -55,7 +55,7 @@ export class SceneTitle extends g.Scene {
 	private wait: g.Sprite | null = null;
 	private title: g.Sprite | null = null;
 	private timeTitle: number = 5;
-	private time: number = 60;
+	private time: number = 120;
 	private miss: number = 0;
 	private isTouchScene: boolean = false;
 	private downIdx: number = -1;
@@ -130,6 +130,8 @@ export class SceneTitle extends g.Scene {
 			// 押上時のインデックスを取得し処理を分岐
 			const upIdx: number = Tiles.changeXY2Idx(ev.point.x + ev.startDelta.x, ev.point.y + ev.startDelta.y);
 			if (ev.point.y >= 80) {
+				if (ev.point.x < DST_TILE_SIZE) return;
+				if (ev.point.y >= g.game.width - DST_TILE_SIZE) return;
 				if (ev.button === 0) {
 					// console.log("upIdx = " + upIdx);
 					// console.log("dwIdx = " + this.downIdx);
@@ -358,7 +360,7 @@ export class SceneTitle extends g.Scene {
 			align: "right",
 			parent: this.layer0,
 		});
-		this.restMine.setNumber(20);
+		this.restMine.setNumber(MINE_MAX);
 		// =================================================
 		// 顔
 		// =================================================
@@ -426,11 +428,11 @@ export class SceneTitle extends g.Scene {
 		return new g.Sprite({
 			scene: this,
 			src: this.asset.getImageById(AST_TILES),
-			width: TILE_SIZE,
-			height: TILE_SIZE,
-			srcX: TILE_SIZE * TileState.Miss,
-			x: Math.floor(p.x / TILE_SIZE) * TILE_SIZE,
-			y: Math.floor(p.y / TILE_SIZE) * TILE_SIZE,
+			srcWidth: SRC_TILE_SIZE, srcHeight: SRC_TILE_SIZE,
+			width: DST_TILE_SIZE, height: DST_TILE_SIZE,
+			srcX: SRC_TILE_SIZE * TileState.Miss,
+			x: 40 + Math.floor((p.x - 40) / DST_TILE_SIZE) * DST_TILE_SIZE,
+			y: 80 + Math.floor((p.y - 80) / DST_TILE_SIZE) * DST_TILE_SIZE,
 			parent: <g.E>this.layer1,
 		});
 	}

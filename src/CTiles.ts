@@ -35,14 +35,15 @@ export const TileState = {
 type TileState = typeof TileState[keyof typeof TileState];
 
 
-export const TILE_SIZE: number = 80;
+export const SRC_TILE_SIZE: number = 80;
+export const DST_TILE_SIZE: number = 40;
+export const MINE_MAX: number = 99;
 
-const TILE_COLS: number = 16;		// タイルの列数(横の数)
-const TILE_ROWS: number = 8;		// タイルの行数(縦の数)
+const TILE_COLS: number = 30;		// タイルの列数(横の数)
+const TILE_ROWS: number = 16;		// タイルの行数(縦の数)
 const VIEW_TILES: number = TILE_COLS * TILE_ROWS;
 const ALL_TILES: number = (TILE_COLS + 2) * (TILE_ROWS + 2);
-const NEIGHBOR8: number[] = [-19, -18, -17, 1, 19, 18, 17, -1];
-const MINE_MAX: number = 20;
+const NEIGHBOR8: number[] = [-(TILE_COLS + 3), -(TILE_COLS + 2), -(TILE_COLS + 1), 1, (TILE_COLS + 3), (TILE_COLS + 2), (TILE_COLS + 1), -1];
 // const NEIGHBOR4: number[] = [-18, 1, 18, -1];
 
 export class Tiles {
@@ -85,7 +86,7 @@ export class Tiles {
 			} else {
 				// 画像の更新
 				if (this.tiles[i].entity != null) {
-					this.tiles[i].entity.srcX = TILE_SIZE * TileState.Close;
+					this.tiles[i].entity.srcX = SRC_TILE_SIZE * TileState.Close;
 					this.tiles[i].entity.invalidate();
 				}
 			}
@@ -177,11 +178,11 @@ export class Tiles {
 				this.tiles[i].entity = new g.Sprite({
 					scene: scene,
 					src: scene.asset.getImageById(AST_TILES),
-					width: TILE_SIZE,
-					height: TILE_SIZE,
-					srcX: TILE_SIZE * TileState.Close,
-					x: TILE_SIZE * (col - 1),
-					y: TILE_SIZE * row,
+					srcWidth: SRC_TILE_SIZE, srcHeight: SRC_TILE_SIZE,
+					width: DST_TILE_SIZE, height: DST_TILE_SIZE,
+					srcX: SRC_TILE_SIZE * TileState.Close,
+					x: DST_TILE_SIZE * col,
+					y: DST_TILE_SIZE * (row + 1),
 					// touchable: true,
 					parent: layer,
 				});
@@ -226,7 +227,12 @@ export class Tiles {
 	 * @param y 
 	 */
 	public static changeXY2Idx(x: number, y: number): number {
-		return (TILE_COLS + 2) * Math.floor(y / TILE_SIZE) + (Math.floor(x / TILE_SIZE) + 1);
+		console.log("x  :" + x);
+		console.log("y  :" + y);
+		console.log("col:" + (Math.floor((x - 40) / DST_TILE_SIZE) + 1));
+		console.log("row:" + (Math.floor((y - 80) / DST_TILE_SIZE) + 1));
+		console.log("idx:" + ((TILE_COLS + 2) * (Math.floor((y - 80) / DST_TILE_SIZE) + 1) + (Math.floor((x - 40) / DST_TILE_SIZE) + 1)));
+		return (TILE_COLS + 2) * (Math.floor((y - 80) / DST_TILE_SIZE) + 1) + (Math.floor((x - 40) / DST_TILE_SIZE) + 1);
 	}
 
 	public consoleLog(): void {
@@ -255,8 +261,8 @@ export class Tiles {
 		let retValue = true;
 		// 処理を抜ける
 		// if (cTile.entity != null) {
-		// 	if (b === 0 && cTile.entity.srcX >= TILE_SIZE * TileState) return true;
-		// 	if (b === 2 && cTile.entity.srcX !== TILE_SIZE * 8) return true;
+		// 	if (b === 0 && cTile.entity.srcX >= SRC_TILE_SIZE * TileState) return true;
+		// 	if (b === 2 && cTile.entity.srcX !== SRC_TILE_SIZE * 8) return true;
 		// }
 		//
 		// ポイントクリア
@@ -319,7 +325,7 @@ export class Tiles {
 			// カウント
 			let openMine = 0;
 			let close = 0;
-			for (let j = 19; j < 163; j += TILE_COLS + 2) {
+			for (let j = (TILE_COLS + 2) + 1; j < (TILE_COLS + 2) * (TILE_ROWS + 1) - 1; j += TILE_COLS + 2) {
 				for (let i = j; i < j + TILE_COLS; i++) {
 					if (this.tiles[i].isOpen) {
 						if (this.tiles[i].isMine) {
@@ -332,7 +338,7 @@ export class Tiles {
 			}
 			if (openMine === MINE_MAX) {
 				// 残り全て開ける
-				for (let j = 19; j < 163; j += TILE_COLS + 2) {
+				for (let j = (TILE_COLS + 2) + 1; j < (TILE_COLS + 2) * (TILE_ROWS + 1) - 1; j += TILE_COLS + 2) {
 					for (let i = j; i < j + TILE_COLS; i++) {
 						if (!this.tiles[i].isOpen) {
 							this.openCountTile(this.tiles[i]);
@@ -341,7 +347,7 @@ export class Tiles {
 				}
 			} else if (close === MINE_MAX - openMine) {
 				// 残り全て旗を立てる
-				for (let j = 19; j < 163; j += TILE_COLS + 2) {
+				for (let j = (TILE_COLS + 2) + 1; j < (TILE_COLS + 2) * (TILE_ROWS + 1) - 1; j += TILE_COLS + 2) {
 					for (let i = j; i < j + TILE_COLS; i++) {
 						if (!this.tiles[i].isOpen) {
 							this.openFlagTile(this.tiles[i]);
@@ -370,7 +376,7 @@ export class Tiles {
 			// カウント
 			let openBomb = 0;
 			let close = 0;
-			for (let j = 19; j < 163; j += TILE_COLS + 2) {
+			for (let j = (TILE_COLS + 2) + 1; j < (TILE_COLS + 2) * (TILE_ROWS + 1) - 1; j += TILE_COLS + 2) {
 				for (let i = j; i < j + TILE_COLS; i++) {
 					if (this.tiles[i].isOpen) {
 						if (this.tiles[i].isMine) {
@@ -383,7 +389,7 @@ export class Tiles {
 			}
 			if (retValue === false && close === MINE_MAX - openBomb) {
 				// 残り全て旗を立てる
-				for (let j = 19; j < 163; j += TILE_COLS + 2) {
+				for (let j = (TILE_COLS + 2) + 1; j < (TILE_COLS + 2) * (TILE_ROWS + 1) - 1; j += TILE_COLS + 2) {
 					for (let i = j; i < j + TILE_COLS; i++) {
 						if (!this.tiles[i].isOpen) {
 							this.openFlagTile(this.tiles[i]);
@@ -393,7 +399,7 @@ export class Tiles {
 				}
 			} else if (openBomb === MINE_MAX) {
 				// 残り全て開ける
-				for (let j = 19; j < 163; j += TILE_COLS + 2) {
+				for (let j = (TILE_COLS + 2) + 1; j < (TILE_COLS + 2) * (TILE_ROWS + 1) - 1; j += TILE_COLS + 2) {
 					for (let i = j; i < j + TILE_COLS; i++) {
 						if (!this.tiles[i].isOpen) {
 							this.openCountTile(this.tiles[i]);
@@ -428,7 +434,7 @@ export class Tiles {
 	private openCountTile(tile: Tile): void {
 		tile.isOpen = true;
 		if (tile.entity != null) {
-			tile.entity.srcX = TILE_SIZE * tile.mCount;
+			tile.entity.srcX = SRC_TILE_SIZE * tile.mCount;
 			tile.entity.invalidate();
 		}
 	}
@@ -437,7 +443,7 @@ export class Tiles {
 		tile.isOpen = true;
 		// tile.state = 0;
 		if (tile.entity != null) {
-			tile.entity.srcX = TILE_SIZE * TileState.Mine;
+			tile.entity.srcX = SRC_TILE_SIZE * TileState.Mine;
 			tile.entity.invalidate();
 		}
 	}
@@ -447,7 +453,7 @@ export class Tiles {
 		tile.isMine = true;
 		// tile.state = 0;
 		if (tile.entity != null) {
-			tile.entity.srcX = TILE_SIZE * TileState.Flag;
+			tile.entity.srcX = SRC_TILE_SIZE * TileState.Flag;
 			tile.entity.invalidate();
 		}
 	}
