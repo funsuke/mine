@@ -73,10 +73,9 @@
 // ・旗を立てる音(右クリック成功時、数字クリック→旗立て処理)
 // ・失敗時 ブー短め
 
-import { GameMainParameterObject } from "./parameterObject";
 import { SceneTitle } from "./sceneTitle";
 
-function main(param: GameMainParameterObject): void {
+function main(param: g.GameMainParameterObject): void {
 	g.game.vars.gameState = {};
 	g.game.vars.gameState.score = 0;
 	g.game.pushScene(new SceneTitle(param));

@@ -81,7 +81,7 @@ class SceneTitle extends g.Scene {
     this.time3 = 3;
     this.isPlayBeginning = false;
     // ランダム
-    this.rand = new random_1.Random(param.random);
+    this.rand = new random_1.Random(g.game.random);
     // タイルクラス
     this.tiles = new CTiles_1.Tiles(this.rand);
     // SE

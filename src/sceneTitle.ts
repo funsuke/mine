@@ -1,4 +1,3 @@
-import { GameMainParameterObject } from "./parameterObject";
 import { Random } from "./random";
 import { DST_TILE_SIZE, MINE_MAX, SRC_TILE_SIZE, Tiles, TileState } from "./CTiles";
 import { Number } from "./number";
@@ -71,7 +70,7 @@ export class SceneTitle extends g.Scene {
 	 * タイトルシーン
 	 * @param param シーンパラメータ
 	 */
-	constructor(param: GameMainParameterObject) {
+	constructor(param: g.GameMainParameterObject) {
 		// =================================================
 		// シーン定義
 		// =================================================
@@ -94,7 +93,7 @@ export class SceneTitle extends g.Scene {
 			],
 		});
 		// ランダム
-		this.rand = new Random(param.random);
+		this.rand = new Random(g.game.random);
 		// タイルクラス
 		this.tiles = new Tiles(this.rand);
 		// SE
@@ -241,7 +240,7 @@ export class SceneTitle extends g.Scene {
 	 * @param param
 	 * @returns
 	 */
-	private onUpdateFunc(param: GameMainParameterObject): void {
+	private onUpdateFunc(param: g.GameMainParameterObject): void {
 		if (sceneState === SceneState.Title) {
 			if (this.timeTitle <= 0) {
 				this.title?.hide();
@@ -325,7 +324,7 @@ export class SceneTitle extends g.Scene {
 	 * @param param シーンパラメータ
 	 * @returns
 	 */
-	private onLoadFunc(param: GameMainParameterObject): void {
+	private onLoadFunc(param: g.GameMainParameterObject): void {
 		// レイヤー
 		this.layer0 = new g.E({ scene: this, parent: this, hidden: true, });
 		this.layer1 = new g.E({ scene: this, parent: this, hidden: true, });
