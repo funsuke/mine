@@ -11,6 +11,8 @@ export const AST_7SEG_0: string = "7seg_48x80_0";
 export const AST_7SEG_1: string = "7seg_48x80_1";
 export const AST_WAIT: string = "wait";
 export const AST_TITLE: string = "title";
+export const AST_WINDOW: string = "window_score";
+export const AST_NUMBER: string = "num_result";
 
 // export const AST_ID_OPEN: string = "se_open_nc305386";
 // export const AST_ID_OPEN_ZERO: string = "se_open_zero_nc194283";
@@ -66,6 +68,10 @@ export class SceneTitle extends g.Scene {
 	private isPlayEnd: boolean = false;
 	private time3: number = 3;
 	private isPlayBeginning: boolean = false;
+	private grayRect: g.FilledRect | null = null;
+	private window: g.Sprite | null = null;
+	private score: Number | null = null;
+	private resetScore: number = 0;
 	/**
 	 * タイトルシーン
 	 * @param param シーンパラメータ
@@ -80,6 +86,7 @@ export class SceneTitle extends g.Scene {
 				// タイトル, 画像フォント
 				AST_TILES, AST_7SEG_0, AST_7SEG_1,
 				AST_WAIT, AST_TITLE,
+				AST_WINDOW, AST_NUMBER,
 				// 音
 				AST_CLICK, AST_FAIL, AST_PON,
 				AST_95_B, AST_95_E,
@@ -284,6 +291,11 @@ export class SceneTitle extends g.Scene {
 			} else if (this.time3 === 1 && this.time <= 1) {
 				this.asset.getAudioById(AST_PON).play().changeVolume(0.5);
 				this.time3--;
+			} else if (this.time3 === 0) {
+				this.grayRect?.show();
+				this.window?.show();
+				this.score?.setNumber(g.game.vars.gameState.score);
+				this.score?.show();
 			}
 			this.time -= 1 / g.game.fps;
 			// 残り時間の設定
@@ -306,17 +318,22 @@ export class SceneTitle extends g.Scene {
 			}
 			// タイルアップデート
 			if (this.tiles.getCloseMine() === 0) {
-				// 赤線削除
-				if (this.layer1 != null && this.layer1.children != null) {
-					this.layer1.children = [];
-				}
-				// 初期化
-				this.tiles.init();
-				// 初期値
-				this.downIdx = -1;
+				this.resetScore = g.game.vars.gameState.score;
+				this.refresh();
 			}
 		}
 		return;
+	}
+
+	private refresh(): void {
+		// 赤線削除
+		if (this.layer1 != null && this.layer1.children != null) {
+			this.layer1.children = [];
+		}
+		// 初期化
+		this.tiles.init();
+		// 初期値
+		this.downIdx = -1;
 	}
 
 	/**
@@ -374,6 +391,11 @@ export class SceneTitle extends g.Scene {
 			anchorX: 0.5,
 			x: g.game.width / 2,
 			parent: this.layer0,
+			touchable: true,
+		});
+		this.face.onPointDown.add(() => {
+			g.game.vars.gameState.score = this.resetScore;
+			this.refresh();
 		});
 		// =================================================
 		// 残り時間
@@ -409,6 +431,39 @@ export class SceneTitle extends g.Scene {
 			// touchable: true,
 			hidden: true,
 		});
+		// =================================================
+		// グレーの矩形
+		// =================================================
+		this.grayRect = new g.FilledRect({
+			scene: this,
+			cssColor: "rgba(0, 0, 0, 0.5)",
+			width: g.game.width,
+			height: g.game.height,
+			parent: this.layer2,
+			hidden: true,
+		});
+		this.window = new g.Sprite({
+			scene: this,
+			src: this.asset.getImageById(AST_WINDOW),
+			anchorX: 0.5, anchorY: 0.5,
+			scaleX: 2.0, scaleY: 2.0,
+			x: g.game.width / 2, y: g.game.height / 2,
+			parent: this.layer2,
+			hidden: true,
+		});
+		this.score = new Number({
+			scene: this,
+			assetId: AST_NUMBER,
+			maxDigit: 6,
+			anchorX: 1.0,
+			scaleX: 1.5, scaleY: 1.5,
+			x: g.game.width / 2 + 300,
+			y: g.game.height / 2,
+			pitch: 68,
+			parent: this.layer2,
+			hidden: true,
+		});
+		this.score.setNumber(g.game.vars.gameState.score);
 		// =================================================
 		// タイトル
 		// =================================================

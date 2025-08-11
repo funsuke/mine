@@ -227,11 +227,11 @@ export class Tiles {
 	 * @param y 
 	 */
 	public static changeXY2Idx(x: number, y: number): number {
-		console.log("x  :" + x);
-		console.log("y  :" + y);
-		console.log("col:" + (Math.floor((x - 40) / DST_TILE_SIZE) + 1));
-		console.log("row:" + (Math.floor((y - 80) / DST_TILE_SIZE) + 1));
-		console.log("idx:" + ((TILE_COLS + 2) * (Math.floor((y - 80) / DST_TILE_SIZE) + 1) + (Math.floor((x - 40) / DST_TILE_SIZE) + 1)));
+		// console.log("x  :" + x);
+		// console.log("y  :" + y);
+		// console.log("col:" + (Math.floor((x - 40) / DST_TILE_SIZE) + 1));
+		// console.log("row:" + (Math.floor((y - 80) / DST_TILE_SIZE) + 1));
+		// console.log("idx:" + ((TILE_COLS + 2) * (Math.floor((y - 80) / DST_TILE_SIZE) + 1) + (Math.floor((x - 40) / DST_TILE_SIZE) + 1)));
 		return (TILE_COLS + 2) * (Math.floor((y - 80) / DST_TILE_SIZE) + 1) + (Math.floor((x - 40) / DST_TILE_SIZE) + 1);
 	}
 

@@ -73,8 +73,8 @@ export class Number extends g.E {
 				src: this.imgNumber,
 				width: this.w,
 				height: this.h,
-				anchorX: this.anchorX,
-				anchorY: this.anchorY,
+				anchorX: 0.0,
+				anchorY: 0.0,
 				srcWidth: this.w,
 				srcHeight: this.h,
 				frames: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -99,6 +99,7 @@ export class Number extends g.E {
 		} else {
 			digit = this.maxDigit;
 		}
+		this.width = this.pitch * digit + this.w;
 		for (let i = 0; i < this.maxDigit; i++) {
 			if (this.align === "left") {
 				this.fSprite[i].x = this.pitch * (digit - i);
@@ -118,7 +119,6 @@ export class Number extends g.E {
 			}
 			useNum = Math.floor(useNum / 10);
 		}
-		this.width = this.pitch * digit + this.w;
 		this.modified;
 	};
 	/**

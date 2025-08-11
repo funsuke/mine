@@ -297,6 +297,18 @@
 			"path": "image/title.png",
 			"width": 640,
 			"height": 360
+		},
+		"num_result": {
+			"type": "image",
+			"path": "image/num_result.png",
+			"width": 720,
+			"height": 83
+		},
+		"window_score": {
+			"type": "image",
+			"path": "image/window_score.png",
+			"width": 450,
+			"height": 176
 		}
 	},
 	"environment": {
