@@ -279,7 +279,6 @@ export class SceneTitle extends g.Scene {
 					this.asset.getAudioById(this.assetSE[this.idxSE][1]).play();
 					this.isPlayEnd = true;
 				}
-				return;
 			}
 			// 残り３秒
 			if (this.time3 === 3 && this.time <= 3) {
@@ -291,7 +290,7 @@ export class SceneTitle extends g.Scene {
 			} else if (this.time3 === 1 && this.time <= 1) {
 				this.asset.getAudioById(AST_PON).play().changeVolume(0.5);
 				this.time3--;
-			} else if (this.time3 === 0) {
+			} else if (this.time3 === 0 && this.time <= -1) {
 				this.grayRect?.show();
 				this.window?.show();
 				this.score?.setNumber(g.game.vars.gameState.score);
@@ -299,7 +298,7 @@ export class SceneTitle extends g.Scene {
 			}
 			this.time -= 1 / g.game.fps;
 			// 残り時間の設定
-			this.restTime?.setNumber(Math.ceil(this.time));
+			this.restTime?.setNumber(Math.ceil(this.time < 0 ? 0 : this.time));
 			// 顔の表示更新
 			if (this.face != null) {
 				this.face.frameNumber = this.miss;
