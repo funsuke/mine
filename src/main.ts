@@ -5,6 +5,8 @@
 // npm install -DE @akashic/akashic-engine
 // Zipファイル(上書き)
 // akashic export zip --output game.zip --nicolive -f -M
+// htmlファイル(上書き)
+// akashic export html --magnify --force  --output ../mine/myhtml
 // テスト
 // akashic-sandbox
 // マルチのテストは

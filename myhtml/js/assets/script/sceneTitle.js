@@ -1,4 +1,491 @@
 window.gLocalAssetContainer["sceneTitle"] = function(g) { (function(exports, require, module, __filename, __dirname) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.SceneTitle=exports.SceneState=exports.AST_VISTA_E=exports.AST_VISTA_B=exports.AST_LH_E=exports.AST_LH_B=exports.AST_XP_E=exports.AST_XP_B=exports.AST_2000_E=exports.AST_2000_B=exports.AST_NT5_E=exports.AST_NT5_B=exports.AST_98_E=exports.AST_98_B=exports.AST_NT4_E=exports.AST_NT4_B=exports.AST_95_E=exports.AST_95_B=exports.AST_PON=exports.AST_CLICK=exports.AST_FAIL=exports.AST_NUMBER=exports.AST_WINDOW=exports.AST_TITLE=exports.AST_WAIT=exports.AST_7SEG_1=exports.AST_7SEG_0=exports.AST_TILES=void 0;const random_1=require("./random"),CTiles_1=require("./CTiles"),number_1=require("./number");exports.AST_TILES="tiles",exports.AST_7SEG_0="7seg_48x80_0",exports.AST_7SEG_1="7seg_48x80_1",exports.AST_WAIT="wait",exports.AST_TITLE="title",exports.AST_WINDOW="window_score",exports.AST_NUMBER="num_result",exports.AST_FAIL="se_fail_nc70053",exports.AST_CLICK="se_open_nc305386",exports.AST_PON="se_pon",exports.AST_95_B="se95s_nc294782_44_Startup95",exports.AST_95_E="se95e_nc294782_17_TADA95",exports.AST_NT4_B="seNT4s_nc294782_45_StartupNT4",exports.AST_NT4_E="seNT4e_nc294782_46_ShutdownNT4",exports.AST_98_B="se98s_nc294782_49_Startup98",exports.AST_98_E="se98e_nc294782_50_Shutdown98",exports.AST_NT5_B="seNT5s_nc294782_47_StartupNT5",exports.AST_NT5_E="seNT5e_nc294782_48_ShutdownNT5",exports.AST_2000_B="se2000s_nc294782_51_Startup2000",exports.AST_2000_E="se2000e_nc294782_52_Shutdown2000",exports.AST_XP_B="seXPs_nc294782_55_StartupXP",exports.AST_XP_E="seXPe_nc294782_56_ShutdownXP",exports.AST_LH_B="seLHs_nc294782_59_StartupLH",exports.AST_LH_E="seLHe_nc294782_60_ShutdownLH",exports.AST_VISTA_B="seVistas_nc294782_63_StartupVista",exports.AST_VISTA_E="seVistae_nc294782_64_ShutdownVista",exports.SceneState={Title:0,Main:1};let sceneState=exports.SceneState.Title;class SceneTitle extends g.Scene{constructor(e){super({game:g.game,assetIds:[exports.AST_TILES,exports.AST_7SEG_0,exports.AST_7SEG_1,exports.AST_WAIT,exports.AST_TITLE,exports.AST_WINDOW,exports.AST_NUMBER,exports.AST_CLICK,exports.AST_FAIL,exports.AST_PON,exports.AST_95_B,exports.AST_95_E,exports.AST_NT4_B,exports.AST_NT4_E,exports.AST_98_B,exports.AST_98_E,exports.AST_NT5_B,exports.AST_NT5_E,exports.AST_2000_B,exports.AST_2000_E,exports.AST_XP_B,exports.AST_XP_E,exports.AST_LH_B,exports.AST_LH_E,exports.AST_VISTA_B,exports.AST_VISTA_E]}),this.restMine=null,this.restTime=null,this.face=null,this.wait=null,this.title=null,this.timeTitle=5,this.time=120,this.miss=0,this.isTouchScene=!1,this.downIdx=-1,this.layer0=null,this.layer1=null,this.layer2=null,this.assetSE=new Array(8),this.isPlayEnd=!1,this.time3=3,this.isPlayBeginning=!1,this.grayRect=null,this.window=null,this.score=null,this.resetScore=0,this.rand=new random_1.Random(g.game.random),this.tiles=new CTiles_1.Tiles(this.rand),this.idxSE=this.rand.randInt(8),this.assetSE=[[exports.AST_95_B,exports.AST_95_E],[exports.AST_NT4_B,exports.AST_NT4_E],[exports.AST_98_B,exports.AST_98_E],[exports.AST_NT5_B,exports.AST_NT5_E],[exports.AST_2000_B,exports.AST_2000_E],[exports.AST_XP_B,exports.AST_XP_E],[exports.AST_LH_B,exports.AST_LH_E],[exports.AST_VISTA_B,exports.AST_VISTA_E]],this.onLoad.add(()=>{this.onLoadFunc(e)}),this.onUpdate.add(()=>{this.onUpdateFunc(e)}),this.onPointUpCapture.add(e=>{var t;if(!this.isTouchScene)return;const s=CTiles_1.Tiles.changeXY2Idx(e.point.x+e.startDelta.x,e.point.y+e.startDelta.y);if(e.point.y>=80){if(e.point.x<CTiles_1.DST_TILE_SIZE)return;if(e.point.y>=g.game.width-CTiles_1.DST_TILE_SIZE)return;0===e.button&&(this.downIdx>=0&&(s!==this.downIdx||this.tiles.isOpen(this.downIdx)?s===this.downIdx||this.tiles.isOpen(this.downIdx)||(this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(.1),this.tiles.refresh(e.point.x,e.point.y,2)?(g.game.vars.gameState.score+=this.tiles.getPoint(),this.miss=0):(this.appendRedLine(e.point),this.miss++,this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(.7))):this.tiles.refresh(e.point.x,e.point.y,e.button)?this.miss=0:(this.appendRedLine(e.point),this.miss++,this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(.7))),null===(t=this.restMine)||void 0===t||t.setNumber(this.tiles.getCloseMine()))}}),this.onPointDownCapture.add(e=>{var t;this.isTouchScene&&e.point.y>=80&&(this.downIdx<0?(this.tiles.setTiles(e.point.x,e.point.y),this.tiles.refresh(e.point.x,e.point.y,0)?this.miss=0:(this.appendRedLine(e.point),this.miss++),this.isPlayBeginning?this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(.1):(this.asset.getAudioById(this.assetSE[this.idxSE][0]).play(),this.isPlayBeginning=!0),this.downIdx=CTiles_1.Tiles.changeXY2Idx(e.point.x,e.point.y)):0===e.button?(this.downIdx=CTiles_1.Tiles.changeXY2Idx(e.point.x,e.point.y),this.tiles.getTile(this.downIdx).isMine||(this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(.1),this.tiles.refresh(e.point.x,e.point.y,e.button)?(g.game.vars.gameState.score+=this.tiles.getPoint(),this.miss=0):(this.appendRedLine(e.point),this.miss++,this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(.7)))):2===e.button&&(this.downIdx=CTiles_1.Tiles.changeXY2Idx(e.point.x,e.point.y),this.tiles.isOpen(this.downIdx)||(this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(.1),this.tiles.refresh(e.point.x,e.point.y,e.button)?(g.game.vars.gameState.score+=this.tiles.getPoint(),this.miss=0):(this.appendRedLine(e.point),this.miss++,this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(.7))),null===(t=this.restMine)||void 0===t||t.setNumber(this.tiles.getCloseMine())))})}onUpdateFunc(e){var t,s,i,r,o,h,_,n,a,T;if(sceneState===exports.SceneState.Title){if(this.timeTitle<=0)return null===(t=this.title)||void 0===t||t.hide(),null===(s=this.layer0)||void 0===s||s.show(),null===(i=this.layer1)||void 0===i||i.show(),null===(r=this.layer2)||void 0===r||r.show(),this.isTouchScene=!0,this.time3=3,void(sceneState=exports.SceneState.Main);(3===this.time3&&this.timeTitle<=3||2===this.time3&&this.timeTitle<=2||1===this.time3&&this.timeTitle<=1)&&(this.asset.getAudioById(exports.AST_PON).play().changeVolume(.5),this.time3--),this.timeTitle-=1/g.game.fps}else if(sceneState===exports.SceneState.Main){if(this.time<=0)return this.isTouchScene=!1,void(this.isPlayEnd||(this.asset.getAudioById(this.assetSE[this.idxSE][1]).play(),this.isPlayEnd=!0));if(3===this.time3&&this.time<=3||2===this.time3&&this.time<=2||1===this.time3&&this.time<=1?(this.asset.getAudioById(exports.AST_PON).play().changeVolume(.5),this.time3--):0===this.time3&&(null===(o=this.grayRect)||void 0===o||o.show(),null===(h=this.window)||void 0===h||h.show(),null===(_=this.score)||void 0===_||_.setNumber(g.game.vars.gameState.score),null===(n=this.score)||void 0===n||n.show()),this.time-=1/g.game.fps,null===(a=this.restTime)||void 0===a||a.setNumber(Math.ceil(this.time)),null!=this.face&&(this.face.frameNumber=this.miss,this.face.modified()),this.miss>=2){this.isTouchScene=!1,null===(T=this.wait)||void 0===T||T.show();const e=this.setTimeout(()=>{var t;this.miss=0,null===(t=this.wait)||void 0===t||t.hide(),this.isTouchScene=!0,this.clearTimeout(e)},3e3)}0===this.tiles.getCloseMine()&&(this.resetScore=g.game.vars.gameState.score,this.refresh())}}refresh(){null!=this.layer1&&null!=this.layer1.children&&(this.layer1.children=[]),this.tiles.init(),this.downIdx=-1}onLoadFunc(e){this.layer0=new g.E({scene:this,parent:this,hidden:!0}),this.layer1=new g.E({scene:this,parent:this,hidden:!0}),this.layer2=new g.E({scene:this,parent:this,hidden:!0}),new g.FilledRect({scene:this,cssColor:"#f0f0f0",width:g.game.width,height:g.game.height,parent:this.layer0}),this.tiles.append(this,this.layer0);for(let e=0;e<3;e++)new g.Sprite({scene:this,src:this.asset.getImageById(exports.AST_7SEG_0),x:48*e,parent:this.layer0});this.restMine=new number_1.Number({scene:this,assetId:exports.AST_7SEG_1,maxDigit:3,align:"right",parent:this.layer0}),this.restMine.setNumber(CTiles_1.MINE_MAX),this.face=new g.FrameSprite({scene:this,src:this.asset.getImageById(exports.AST_TILES),width:80,height:80,frames:[12,13,14],frameNumber:CTiles_1.TileState.Smile,anchorX:.5,x:g.game.width/2,parent:this.layer0,touchable:!0}),this.face.onPointDown.add(()=>{g.game.vars.gameState.score=this.resetScore,this.refresh()});for(let e=0;e<3;e++)new g.Sprite({scene:this,src:this.asset.getImageById(exports.AST_7SEG_0),x:g.game.width-48*(e+1),parent:this.layer0});this.restTime=new number_1.Number({scene:this,assetId:exports.AST_7SEG_1,maxDigit:3,align:"right",x:g.game.width-144,parent:this.layer0}),this.restTime.setNumber(Math.ceil(this.time)),this.wait=new g.Sprite({scene:this,src:this.asset.getImageById(exports.AST_WAIT),scaleX:2,scaleY:2,parent:this.layer2,hidden:!0}),this.grayRect=new g.FilledRect({scene:this,cssColor:"rgba(0, 0, 0, 0.5)",width:g.game.width,height:g.game.height,parent:this.layer2,hidden:!0}),this.window=new g.Sprite({scene:this,src:this.asset.getImageById(exports.AST_WINDOW),anchorX:.5,anchorY:.5,scaleX:2,scaleY:2,x:g.game.width/2,y:g.game.height/2,parent:this.layer2,hidden:!0}),this.score=new number_1.Number({scene:this,assetId:exports.AST_NUMBER,maxDigit:6,anchorX:1,scaleX:1.5,scaleY:1.5,x:g.game.width/2+300,y:g.game.height/2,pitch:68,parent:this.layer2,hidden:!0}),this.score.setNumber(g.game.vars.gameState.score),this.title=new g.Sprite({scene:this,src:this.asset.getImageById(exports.AST_TITLE),scaleX:2,scaleY:2,parent:this})}appendRedLine(e){return new g.Sprite({scene:this,src:this.asset.getImageById(exports.AST_TILES),srcWidth:CTiles_1.SRC_TILE_SIZE,srcHeight:CTiles_1.SRC_TILE_SIZE,width:CTiles_1.DST_TILE_SIZE,height:CTiles_1.DST_TILE_SIZE,srcX:CTiles_1.SRC_TILE_SIZE*CTiles_1.TileState.Miss,x:40+Math.floor((e.x-40)/CTiles_1.DST_TILE_SIZE)*CTiles_1.DST_TILE_SIZE,y:80+Math.floor((e.y-80)/CTiles_1.DST_TILE_SIZE)*CTiles_1.DST_TILE_SIZE,parent:this.layer1})}}exports.SceneTitle=SceneTitle;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SceneTitle = exports.SceneState = exports.AST_VISTA_E = exports.AST_VISTA_B = exports.AST_LH_E = exports.AST_LH_B = exports.AST_XP_E = exports.AST_XP_B = exports.AST_2000_E = exports.AST_2000_B = exports.AST_NT5_E = exports.AST_NT5_B = exports.AST_98_E = exports.AST_98_B = exports.AST_NT4_E = exports.AST_NT4_B = exports.AST_95_E = exports.AST_95_B = exports.AST_PON = exports.AST_CLICK = exports.AST_FAIL = exports.AST_NUMBER = exports.AST_WINDOW = exports.AST_TITLE = exports.AST_WAIT = exports.AST_7SEG_1 = exports.AST_7SEG_0 = exports.AST_TILES = void 0;
+const random_1 = require("./random");
+const CTiles_1 = require("./CTiles");
+const number_1 = require("./number");
+// import { SceneMain } from "./sceneMain";
+// import { generate2DArray, getSerialNumberArray } from "./util";
+// import { playAudio } from "./utilAkashic";
+// アセットID定義
+exports.AST_TILES = "tiles";
+exports.AST_7SEG_0 = "7seg_48x80_0";
+exports.AST_7SEG_1 = "7seg_48x80_1";
+exports.AST_WAIT = "wait";
+exports.AST_TITLE = "title";
+exports.AST_WINDOW = "window_score";
+exports.AST_NUMBER = "num_result";
+// export const AST_ID_OPEN: string = "se_open_nc305386";
+// export const AST_ID_OPEN_ZERO: string = "se_open_zero_nc194283";
+exports.AST_FAIL = "se_fail_nc70053";
+exports.AST_CLICK = "se_open_nc305386";
+exports.AST_PON = "se_pon";
+exports.AST_95_B = "se95s_nc294782_44_Startup95";
+exports.AST_95_E = "se95e_nc294782_17_TADA95";
+exports.AST_NT4_B = "seNT4s_nc294782_45_StartupNT4";
+exports.AST_NT4_E = "seNT4e_nc294782_46_ShutdownNT4";
+exports.AST_98_B = "se98s_nc294782_49_Startup98";
+exports.AST_98_E = "se98e_nc294782_50_Shutdown98";
+exports.AST_NT5_B = "seNT5s_nc294782_47_StartupNT5";
+exports.AST_NT5_E = "seNT5e_nc294782_48_ShutdownNT5";
+exports.AST_2000_B = "se2000s_nc294782_51_Startup2000";
+exports.AST_2000_E = "se2000e_nc294782_52_Shutdown2000";
+exports.AST_XP_B = "seXPs_nc294782_55_StartupXP";
+exports.AST_XP_E = "seXPe_nc294782_56_ShutdownXP";
+exports.AST_LH_B = "seLHs_nc294782_59_StartupLH";
+exports.AST_LH_E = "seLHe_nc294782_60_ShutdownLH";
+exports.AST_VISTA_B = "seVistas_nc294782_63_StartupVista";
+exports.AST_VISTA_E = "seVistae_nc294782_64_ShutdownVista";
+exports.SceneState = {
+  Title: 0,
+  Main: 1
+};
+let sceneState = exports.SceneState.Title;
+// *************************************************
+// タイトルシーン
+// *************************************************
+class SceneTitle extends g.Scene {
+  /**
+   * タイトルシーン
+   * @param param シーンパラメータ
+   */
+  constructor(param) {
+    // =================================================
+    // シーン定義
+    // =================================================
+    super({
+      game: g.game,
+      assetIds: [
+      // タイトル, 画像フォント
+      exports.AST_TILES, exports.AST_7SEG_0, exports.AST_7SEG_1, exports.AST_WAIT, exports.AST_TITLE, exports.AST_WINDOW, exports.AST_NUMBER,
+      // 音
+      exports.AST_CLICK, exports.AST_FAIL, exports.AST_PON, exports.AST_95_B, exports.AST_95_E, exports.AST_NT4_B, exports.AST_NT4_E, exports.AST_98_B, exports.AST_98_E, exports.AST_NT5_B, exports.AST_NT5_E, exports.AST_2000_B, exports.AST_2000_E, exports.AST_XP_B, exports.AST_XP_E, exports.AST_LH_B, exports.AST_LH_E, exports.AST_VISTA_B, exports.AST_VISTA_E]
+    });
+    this.restMine = null;
+    this.restTime = null;
+    this.face = null;
+    this.wait = null;
+    this.title = null;
+    this.timeTitle = 5;
+    this.time = 120;
+    this.miss = 0;
+    this.isTouchScene = false;
+    this.downIdx = -1;
+    this.layer0 = null;
+    this.layer1 = null;
+    this.layer2 = null;
+    this.assetSE = new Array(8);
+    this.isPlayEnd = false;
+    this.time3 = 3;
+    this.isPlayBeginning = false;
+    this.grayRect = null;
+    this.window = null;
+    this.score = null;
+    this.resetScore = 0;
+    // ランダム
+    this.rand = new random_1.Random(g.game.random);
+    // タイルクラス
+    this.tiles = new CTiles_1.Tiles(this.rand);
+    // SE
+    this.idxSE = this.rand.randInt(8);
+    this.assetSE = [[exports.AST_95_B, exports.AST_95_E], [exports.AST_NT4_B, exports.AST_NT4_E], [exports.AST_98_B, exports.AST_98_E], [exports.AST_NT5_B, exports.AST_NT5_E], [exports.AST_2000_B, exports.AST_2000_E], [exports.AST_XP_B, exports.AST_XP_E], [exports.AST_LH_B, exports.AST_LH_E], [exports.AST_VISTA_B, exports.AST_VISTA_E]];
+    // =================================================
+    // シーン読込時イベント
+    // =================================================
+    this.onLoad.add(() => {
+      this.onLoadFunc(param);
+    });
+    // =================================================
+    // シーン更新時イベント
+    // =================================================
+    this.onUpdate.add(() => {
+      this.onUpdateFunc(param);
+    });
+    // =================================================
+    // シーン押上時イベント用
+    // =================================================
+    this.onPointUpCapture.add(ev => {
+      var _a;
+      //
+      if (!this.isTouchScene) return;
+      // 押上時のインデックスを取得し処理を分岐
+      const upIdx = CTiles_1.Tiles.changeXY2Idx(ev.point.x + ev.startDelta.x, ev.point.y + ev.startDelta.y);
+      if (ev.point.y >= 80) {
+        if (ev.point.x < CTiles_1.DST_TILE_SIZE) return;
+        if (ev.point.y >= g.game.width - CTiles_1.DST_TILE_SIZE) return;
+        if (ev.button === 0) {
+          // console.log("upIdx = " + upIdx);
+          // console.log("dwIdx = " + this.downIdx);
+          if (this.downIdx >= 0) {
+            if (upIdx === this.downIdx && !this.tiles.isOpen(this.downIdx)) {
+              // タイルオープン処理
+              if (!this.tiles.refresh(ev.point.x, ev.point.y, ev.button)) {
+                this.appendRedLine(ev.point);
+                this.miss++;
+                // 音
+                this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
+              } else {
+                this.miss = 0;
+              }
+            } else if (upIdx !== this.downIdx && !this.tiles.isOpen(this.downIdx)) {
+              // 音
+              this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(0.1);
+              // 旗立て処理
+              if (!this.tiles.refresh(ev.point.x, ev.point.y, 2)) {
+                this.appendRedLine(ev.point);
+                this.miss++;
+                // 音
+                this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
+              } else {
+                g.game.vars.gameState.score += this.tiles.getPoint();
+                this.miss = 0;
+              }
+            }
+          }
+          // 残り地雷数の設定
+          (_a = this.restMine) === null || _a === void 0 ? void 0 : _a.setNumber(this.tiles.getCloseMine());
+        }
+      }
+    });
+    // =================================================
+    // シーン押下時イベント用
+    // =================================================
+    this.onPointDownCapture.add(ev => {
+      var _a;
+      //
+      if (!this.isTouchScene) return;
+      //
+      if (ev.point.y >= 80) {
+        // 初回の場合、初期生成処理
+        if (this.downIdx < 0) {
+          this.tiles.setTiles(ev.point.x, ev.point.y);
+          // this.tiles.consoleLog();
+          // タイルオープン処理
+          if (!this.tiles.refresh(ev.point.x, ev.point.y, 0)) {
+            this.appendRedLine(ev.point);
+            this.miss++;
+          } else {
+            this.miss = 0;
+          }
+          // 音
+          if (!this.isPlayBeginning) {
+            this.asset.getAudioById(this.assetSE[this.idxSE][0]).play();
+            this.isPlayBeginning = true;
+          } else {
+            this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(0.1);
+          }
+          // 押下事インデックスの取得
+          this.downIdx = CTiles_1.Tiles.changeXY2Idx(ev.point.x, ev.point.y);
+        } else if (ev.button === 0) {
+          // 押下事インデックスの取得
+          this.downIdx = CTiles_1.Tiles.changeXY2Idx(ev.point.x, ev.point.y);
+          //
+          if (!this.tiles.getTile(this.downIdx).isMine) {
+            // 音
+            this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(0.1);
+            // 
+            if (!this.tiles.refresh(ev.point.x, ev.point.y, ev.button)) {
+              this.appendRedLine(ev.point);
+              this.miss++;
+              // 音
+              this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
+            } else {
+              g.game.vars.gameState.score += this.tiles.getPoint();
+              this.miss = 0;
+            }
+          }
+        } else if (ev.button === 2) {
+          // 押下事インデックスの取得
+          this.downIdx = CTiles_1.Tiles.changeXY2Idx(ev.point.x, ev.point.y);
+          if (!this.tiles.isOpen(this.downIdx)) {
+            // 音
+            this.asset.getAudioById(exports.AST_CLICK).play().changeVolume(0.1);
+            //
+            if (!this.tiles.refresh(ev.point.x, ev.point.y, ev.button)) {
+              this.appendRedLine(ev.point);
+              this.miss++;
+              // 音
+              this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
+            } else {
+              g.game.vars.gameState.score += this.tiles.getPoint();
+              this.miss = 0;
+            }
+          }
+          // 残り地雷数の設定
+          (_a = this.restMine) === null || _a === void 0 ? void 0 : _a.setNumber(this.tiles.getCloseMine());
+        }
+      }
+    });
+  }
+  /**
+   * シーン更新時処理
+   * @param param
+   * @returns
+   */
+  onUpdateFunc(param) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    if (sceneState === exports.SceneState.Title) {
+      if (this.timeTitle <= 0) {
+        (_a = this.title) === null || _a === void 0 ? void 0 : _a.hide();
+        (_b = this.layer0) === null || _b === void 0 ? void 0 : _b.show();
+        (_c = this.layer1) === null || _c === void 0 ? void 0 : _c.show();
+        (_d = this.layer2) === null || _d === void 0 ? void 0 : _d.show();
+        this.isTouchScene = true;
+        this.time3 = 3;
+        sceneState = exports.SceneState.Main;
+        return;
+      }
+      // 残り３秒
+      if (this.time3 === 3 && this.timeTitle <= 3) {
+        this.asset.getAudioById(exports.AST_PON).play().changeVolume(0.5);
+        this.time3--;
+      } else if (this.time3 === 2 && this.timeTitle <= 2) {
+        this.asset.getAudioById(exports.AST_PON).play().changeVolume(0.5);
+        this.time3--;
+      } else if (this.time3 === 1 && this.timeTitle <= 1) {
+        this.asset.getAudioById(exports.AST_PON).play().changeVolume(0.5);
+        this.time3--;
+      }
+      this.timeTitle -= 1 / g.game.fps;
+    } else if (sceneState === exports.SceneState.Main) {
+      if (this.time <= 0) {
+        this.isTouchScene = false;
+        // 音
+        if (!this.isPlayEnd) {
+          this.asset.getAudioById(this.assetSE[this.idxSE][1]).play();
+          this.isPlayEnd = true;
+        }
+      }
+      // 残り３秒
+      if (this.time3 === 3 && this.time <= 3) {
+        this.asset.getAudioById(exports.AST_PON).play().changeVolume(0.5);
+        this.time3--;
+      } else if (this.time3 === 2 && this.time <= 2) {
+        this.asset.getAudioById(exports.AST_PON).play().changeVolume(0.5);
+        this.time3--;
+      } else if (this.time3 === 1 && this.time <= 1) {
+        this.asset.getAudioById(exports.AST_PON).play().changeVolume(0.5);
+        this.time3--;
+      } else if (this.time3 === 0 && this.time <= -1) {
+        (_e = this.grayRect) === null || _e === void 0 ? void 0 : _e.show();
+        (_f = this.window) === null || _f === void 0 ? void 0 : _f.show();
+        (_g = this.score) === null || _g === void 0 ? void 0 : _g.setNumber(g.game.vars.gameState.score);
+        (_h = this.score) === null || _h === void 0 ? void 0 : _h.show();
+      }
+      this.time -= 1 / g.game.fps;
+      // 残り時間の設定
+      (_j = this.restTime) === null || _j === void 0 ? void 0 : _j.setNumber(Math.ceil(this.time < 0 ? 0 : this.time));
+      // 顔の表示更新
+      if (this.face != null) {
+        this.face.frameNumber = this.miss;
+        this.face.modified();
+      }
+      // ２回ミスすると表示(２秒後)
+      if (this.miss >= 2) {
+        this.isTouchScene = false;
+        (_k = this.wait) === null || _k === void 0 ? void 0 : _k.show();
+        const timerId = this.setTimeout(() => {
+          var _a;
+          this.miss = 0;
+          (_a = this.wait) === null || _a === void 0 ? void 0 : _a.hide();
+          this.isTouchScene = true;
+          this.clearTimeout(timerId);
+        }, 3000);
+      }
+      // タイルアップデート
+      if (this.tiles.getCloseMine() === 0) {
+        this.resetScore = g.game.vars.gameState.score;
+        this.refresh();
+      }
+    }
+    return;
+  }
+  refresh() {
+    // 赤線削除
+    if (this.layer1 != null && this.layer1.children != null) {
+      this.layer1.children = [];
+    }
+    // 初期化
+    this.tiles.init();
+    // 初期値
+    this.downIdx = -1;
+  }
+  /**
+   * シーン読込時処理
+   * @param param シーンパラメータ
+   * @returns
+   */
+  onLoadFunc(param) {
+    // レイヤー
+    this.layer0 = new g.E({
+      scene: this,
+      parent: this,
+      hidden: true
+    });
+    this.layer1 = new g.E({
+      scene: this,
+      parent: this,
+      hidden: true
+    });
+    this.layer2 = new g.E({
+      scene: this,
+      parent: this,
+      hidden: true
+    });
+    // 背景色
+    new g.FilledRect({
+      scene: this,
+      cssColor: "#f0f0f0",
+      width: g.game.width,
+      height: g.game.height,
+      parent: this.layer0
+    });
+    // タイルの表示
+    this.tiles.append(this, this.layer0);
+    // =================================================
+    // 残り地雷数
+    // =================================================
+    // 下に薄いのを表示
+    for (let i = 0; i < 3; i++) {
+      new g.Sprite({
+        scene: this,
+        src: this.asset.getImageById(exports.AST_7SEG_0),
+        x: 48 * i,
+        parent: this.layer0
+      });
+    }
+    // 本表示
+    this.restMine = new number_1.Number({
+      scene: this,
+      assetId: exports.AST_7SEG_1,
+      maxDigit: 3,
+      align: "right",
+      parent: this.layer0
+    });
+    this.restMine.setNumber(CTiles_1.MINE_MAX);
+    // =================================================
+    // 顔
+    // =================================================
+    this.face = new g.FrameSprite({
+      scene: this,
+      src: this.asset.getImageById(exports.AST_TILES),
+      // srcX: TILE_SIZE * TileState.Smile,
+      width: 80,
+      height: 80,
+      frames: [12, 13, 14],
+      frameNumber: CTiles_1.TileState.Smile,
+      anchorX: 0.5,
+      x: g.game.width / 2,
+      parent: this.layer0,
+      touchable: true
+    });
+    this.face.onPointDown.add(() => {
+      g.game.vars.gameState.score = this.resetScore;
+      this.refresh();
+    });
+    // =================================================
+    // 残り時間
+    // =================================================
+    // 下に薄いのを表示
+    for (let i = 0; i < 3; i++) {
+      new g.Sprite({
+        scene: this,
+        src: this.asset.getImageById(exports.AST_7SEG_0),
+        x: g.game.width - 48 * (i + 1),
+        parent: this.layer0
+      });
+    }
+    // 本表示
+    this.restTime = new number_1.Number({
+      scene: this,
+      assetId: exports.AST_7SEG_1,
+      maxDigit: 3,
+      align: "right",
+      x: g.game.width - 48 * 3,
+      parent: this.layer0
+    });
+    this.restTime.setNumber(Math.ceil(this.time));
+    // =================================================
+    // ２回連続ミス
+    // =================================================
+    this.wait = new g.Sprite({
+      scene: this,
+      src: this.asset.getImageById(exports.AST_WAIT),
+      scaleX: 2.0,
+      scaleY: 2.0,
+      parent: this.layer2,
+      // touchable: true,
+      hidden: true
+    });
+    // =================================================
+    // グレーの矩形
+    // =================================================
+    this.grayRect = new g.FilledRect({
+      scene: this,
+      cssColor: "rgba(0, 0, 0, 0.5)",
+      width: g.game.width,
+      height: g.game.height,
+      parent: this.layer2,
+      hidden: true
+    });
+    this.window = new g.Sprite({
+      scene: this,
+      src: this.asset.getImageById(exports.AST_WINDOW),
+      anchorX: 0.5,
+      anchorY: 0.5,
+      scaleX: 2.0,
+      scaleY: 2.0,
+      x: g.game.width / 2,
+      y: g.game.height / 2,
+      parent: this.layer2,
+      hidden: true
+    });
+    this.score = new number_1.Number({
+      scene: this,
+      assetId: exports.AST_NUMBER,
+      maxDigit: 6,
+      anchorX: 1.0,
+      scaleX: 1.5,
+      scaleY: 1.5,
+      x: g.game.width / 2 + 300,
+      y: g.game.height / 2,
+      pitch: 68,
+      parent: this.layer2,
+      hidden: true
+    });
+    this.score.setNumber(g.game.vars.gameState.score);
+    // =================================================
+    // タイトル
+    // =================================================
+    this.title = new g.Sprite({
+      scene: this,
+      src: this.asset.getImageById(exports.AST_TITLE),
+      scaleX: 2.0,
+      scaleY: 2.0,
+      parent: this
+    });
+    return;
+  }
+  appendRedLine(p) {
+    // 赤線
+    return new g.Sprite({
+      scene: this,
+      src: this.asset.getImageById(exports.AST_TILES),
+      srcWidth: CTiles_1.SRC_TILE_SIZE,
+      srcHeight: CTiles_1.SRC_TILE_SIZE,
+      width: CTiles_1.DST_TILE_SIZE,
+      height: CTiles_1.DST_TILE_SIZE,
+      srcX: CTiles_1.SRC_TILE_SIZE * CTiles_1.TileState.Miss,
+      x: 40 + Math.floor((p.x - 40) / CTiles_1.DST_TILE_SIZE) * CTiles_1.DST_TILE_SIZE,
+      y: 80 + Math.floor((p.y - 80) / CTiles_1.DST_TILE_SIZE) * CTiles_1.DST_TILE_SIZE,
+      parent: this.layer1
+    });
+  }
+}
+exports.SceneTitle = SceneTitle;
 })(g.module.exports, g.module.require, g.module, g.filename, g.dirname);
 }
