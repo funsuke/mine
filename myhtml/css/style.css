@@ -1,12 +1,12 @@
 * {
-	margin: 100px;
+	margin: 0;
 	border: 0;
-	padding: 100px;
+	padding: 0;
 }
 
 html {
-	width: 100%;
-	height: 100%;
+	width: 70%;
+	height: 70%;
 }
 
 body {
@@ -28,7 +28,5 @@ body {
 }
 
 #container canvas {
-	/* background-size: contain; */
-  width: 90%;
-  height: 90%;
+	background-size: contain;
 }
