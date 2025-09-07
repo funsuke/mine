@@ -103,18 +103,20 @@ window.addEventListener("load", function() {
 				height: window.innerHeight || document.documentElement.clientHeight
 			};
 			var gameScale = Math.min(
-				viewportSize.width / game.width,
-				viewportSize.height / game.height
+				viewportSize.width / game.width * 0.8,
+				viewportSize.height / game.height * 0.8
 			);
 			var gameSize = {
-				width: Math.floor(game.width * gameScale * 0.8),
-				height: Math.floor(game.height * gameScale * 0.8)
+				width: Math.floor(game.width * gameScale),
+				height: Math.floor(game.height * gameScale)
 			};
 			pf.containerController.changeScale(gameScale, gameScale);
 			var gameOffset = {
 				x: Math.floor((viewportSize.width - gameSize.width) / 2),
 				y: Math.floor((viewportSize.height - gameSize.height) / 2)
 			};
+      gameOffset.x = 0;
+      gameOffset.y = 0;
 			pf.containerController.inputHandlerLayer.setOffset(gameOffset);
 		}
 
