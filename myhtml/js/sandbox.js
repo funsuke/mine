@@ -99,8 +99,8 @@ window.addEventListener("load", function() {
 		function resize(game) {
 			if (!pf.containerController) return;
 			var viewportSize = {
-				width: (window.innerWidth || document.documentElement.clientWidth) * 0.95,
-				height: (window.innerHeight || document.documentElement.clientHeight) * 0.95
+				width: (window.innerWidth || document.documentElement.clientWidth) * 0.97,
+				height: (window.innerHeight || document.documentElement.clientHeight) * 0.97
 			};
 			var gameScale = Math.min(
 				viewportSize.width / game.width,
