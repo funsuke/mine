@@ -1,7 +1,7 @@
 * {
-	margin: 0;
+	margin: 100px;
 	border: 0;
-	padding: 0;
+	padding: 100px;
 }
 
 html {
@@ -28,7 +28,7 @@ body {
 }
 
 #container canvas {
-	background-size: contain;
-  width: 80%;
-  height: 80%;
+	/* background-size: contain; */
+  width: 90%;
+  height: 90%;
 }
