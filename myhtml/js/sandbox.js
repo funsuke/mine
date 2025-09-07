@@ -99,12 +99,12 @@ window.addEventListener("load", function() {
 		function resize(game) {
 			if (!pf.containerController) return;
 			var viewportSize = {
-				width: window.innerWidth || document.documentElement.clientWidth,
-				height: window.innerHeight || document.documentElement.clientHeight
+				width: window.innerWidth || document.documentElement.clientWidth * 0.8,
+				height: window.innerHeight || document.documentElement.clientHeight * 0.8
 			};
 			var gameScale = Math.min(
-				viewportSize.width / game.width * 0.8,
-				viewportSize.height / game.height * 0.8
+				viewportSize.width / game.width,
+				viewportSize.height / game.height
 			);
 			var gameSize = {
 				width: Math.floor(game.width * gameScale),
@@ -115,8 +115,6 @@ window.addEventListener("load", function() {
 				x: Math.floor((viewportSize.width - gameSize.width) / 2),
 				y: Math.floor((viewportSize.height - gameSize.height) / 2)
 			};
-      gameOffset.x = 0;
-      gameOffset.y = 0;
 			pf.containerController.inputHandlerLayer.setOffset(gameOffset);
 		}
 
