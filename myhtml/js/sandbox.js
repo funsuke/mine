@@ -107,8 +107,8 @@ window.addEventListener("load", function() {
 				viewportSize.height / game.height
 			);
 			var gameSize = {
-				width: Math.floor(game.width * gameScale),
-				height: Math.floor(game.height * gameScale)
+				width: Math.floor(game.width * gameScale * 0.8),
+				height: Math.floor(game.height * gameScale * 0.8)
 			};
 			pf.containerController.changeScale(gameScale, gameScale);
 			var gameOffset = {
