@@ -17,7 +17,7 @@ body {
 
 #container {
 	margin: 0px;
-	padding: 0px;
+	padding: 20px;
 	overflow: hidden;
 	touch-action: none;
 	width: 100%;
