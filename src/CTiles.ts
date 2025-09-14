@@ -37,7 +37,7 @@ type TileState = typeof TileState[keyof typeof TileState];
 
 export const SRC_TILE_SIZE: number = 80;
 export const DST_TILE_SIZE: number = 40;
-export const MINE_MAX: number = 99;
+export const MINE_MAX: number = 9;
 
 const TILE_COLS: number = 30;		// タイルの列数(横の数)
 const TILE_ROWS: number = 16;		// タイルの行数(縦の数)
