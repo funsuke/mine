@@ -86,6 +86,7 @@ class SceneTitle extends g.Scene {
     this.window = null;
     this.score = null;
     this.resetScore = 0;
+    this.isMissStage = false;
     // ランダム
     this.rand = new random_1.Random(g.game.random);
     // タイルクラス
@@ -126,6 +127,7 @@ class SceneTitle extends g.Scene {
               if (!this.tiles.refresh(ev.point.x, ev.point.y, ev.button)) {
                 this.appendRedLine(ev.point);
                 this.miss++;
+                this.isMissStage = true;
                 // 音
                 this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
               } else {
@@ -138,6 +140,7 @@ class SceneTitle extends g.Scene {
               if (!this.tiles.refresh(ev.point.x, ev.point.y, 2)) {
                 this.appendRedLine(ev.point);
                 this.miss++;
+                this.isMissStage = true;
                 // 音
                 this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
               } else {
@@ -168,6 +171,7 @@ class SceneTitle extends g.Scene {
           if (!this.tiles.refresh(ev.point.x, ev.point.y, 0)) {
             this.appendRedLine(ev.point);
             this.miss++;
+            this.isMissStage = true;
           } else {
             this.miss = 0;
           }
@@ -191,6 +195,7 @@ class SceneTitle extends g.Scene {
             if (!this.tiles.refresh(ev.point.x, ev.point.y, ev.button)) {
               this.appendRedLine(ev.point);
               this.miss++;
+              this.isMissStage = true;
               // 音
               this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
             } else {
@@ -208,6 +213,7 @@ class SceneTitle extends g.Scene {
             if (!this.tiles.refresh(ev.point.x, ev.point.y, ev.button)) {
               this.appendRedLine(ev.point);
               this.miss++;
+              this.isMissStage = true;
               // 音
               this.asset.getAudioById(exports.AST_FAIL).play().changeVolume(0.7);
             } else {
@@ -298,6 +304,8 @@ class SceneTitle extends g.Scene {
       }
       // タイルアップデート
       if (this.tiles.getCloseMine() === 0) {
+        g.game.vars.gameState.score += !this.isMissStage ? 1000 : 0;
+        if (this.isMissStage) this.isMissStage = false;
         this.resetScore = g.game.vars.gameState.score;
         this.refresh();
       }

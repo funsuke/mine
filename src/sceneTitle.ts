@@ -56,7 +56,7 @@ export class SceneTitle extends g.Scene {
 	private wait: g.Sprite | null = null;
 	private title: g.Sprite | null = null;
 	private timeTitle: number = 5;
-	private time: number = 30;
+	private time: number = 120;
 	private miss: number = 0;
 	private isTouchScene: boolean = false;
 	private downIdx: number = -1;
@@ -323,7 +323,7 @@ export class SceneTitle extends g.Scene {
 			}
 			// タイルアップデート
 			if (this.tiles.getCloseMine() === 0) {
-				g.game.vars.gameState.score += !this.isMissStage ? 1000 : 0;
+				g.game.vars.gameState.score += (!this.isMissStage) ? 1000 : 0;
 				if (this.isMissStage) this.isMissStage = false;
 				this.resetScore = g.game.vars.gameState.score;
 				this.refresh();
